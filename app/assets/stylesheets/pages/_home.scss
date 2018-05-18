@@ -1,0 +1,25 @@
+// Specific CSS for your home-page
+
+.three-box{
+  display:flex;
+  justify-content:space-between;
+  align-items: start;
+}
+
+
+.three-box h2{
+  margin-top: 0px;
+  font-size:30px;
+}
+
+.three-box > *{
+  margin: 0 2%;
+}
+
+.img_product{
+  width:300px;
+  height:300px;
+  border: 3px solid black;
+  background-position : center;
+}
+

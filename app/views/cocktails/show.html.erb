@@ -1,0 +1,32 @@
+
+<div class="center-box">
+  <h1><%= @cocktail.name.capitalize %></h1>
+
+  <div class="three-box">
+    <div class="img_product" style="background-image: url('<%= @cocktail.url_img %>');"></div>
+
+    <div class="ingredient-list">
+      <h2>Ingredient list</h2>
+      <ul>
+        <% @cocktail.doses.each do |dose| %>
+          <li>
+            <%= dose.ingredient.name %> - <%= dose.description %>
+            <%= link_to dose_path(dose), method: 'delete' do %>
+              <i class="fas fa-trash-alt"></i>
+            <% end %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+
+    <div class="form_add">
+      <h2>Add a new ingredient</h2>
+
+      <%= simple_form_for([@cocktail, @new_dose]) do |f| %>
+        <%= f.association :ingredient %>
+        <%= f.input :description %>
+        <%= f.submit "Add ingredient", class: "btn btn-primary" %>
+      <% end %>
+    </div>
+  </div>
+</div>

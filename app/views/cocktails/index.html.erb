@@ -1,7 +1,27 @@
-<h1>My Cocktails</h1>
 
-<% @cocktails.each do |cocktail| %>
-  <div class="card">
-    <div><%= cocktail.name %></div>
+<div class="banner" style="background-image: linear-gradient(-225deg, rgba(240,240,240,0.2) 0%, rgba(150,150,150,0.2) 50%), url('https://www.rhumeriedechamarel.com/wp-content/uploads/2015/10/ORIGINALS-banner.jpg');">
+  <div class="banner-content">
+    <h1>My Cocktails</h1>
+    <p>Find a cocktail!</p>
   </div>
-<% end %>
+</div>
+
+<div class="center-box text-center">
+  <%= link_to new_cocktail_path do %>
+    <i class="fas fa-plus"></i> Add a cocktail
+  <% end %>
+  <div class="cards">
+    <% @cocktails.each do |cocktail| %>
+      <div class="card">
+        <div class="up-card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= cocktail.url_img %>');">
+          <!-- Add rating once the function is coded inside the review controller -->
+        </div>
+        <div class="low-card">
+          <div>rating</div>
+          <div class="card-name"><%= cocktail.name.capitalize %></div>
+        </div>
+        <%= link_to "", cocktail_path(cocktail) %>
+      </div>
+    <% end %>
+  </div>
+</div>
