@@ -9,6 +9,8 @@
   width: 31%;
   margin:10px 1%;
   position:relative;
+  border: 3px solid black;
+  border-radius: 4px;
 }
 
 .up-card {
@@ -17,14 +19,11 @@
   background-size: cover !important;
   background-position: center;
   color: white;
-  border-style: solid;
-  border-color:black;
-  border-width: 3px 3px 0px 3px;
+  border-bottom: 3px solid black;
 }
 
 .low-card{
-  border:3px solid black;
-  padding:10px 5px;
+  padding:10px 10px;
   display:flex;
   justify-content:space-between;
 }
@@ -33,6 +32,10 @@
   text-decoration: none;
   color:black;
   font-size:20px;
+}
+
+.card-name{
+  font-family: 'Bungee Inline', cursive;
 }
 
 .card a{
