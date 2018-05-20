@@ -1,5 +1,5 @@
 
-<div class="center-box">
+<div class="center-box extra-top-margin">
   <h1><%= @cocktail.name.capitalize %></h1>
 
   <div class="three-box">
@@ -17,13 +17,14 @@
           </li>
         <% end %>
       </ul>
+      <%= link_to "Delete the cocktail", cocktail_path(@cocktail), method: 'delete' %>
     </div>
 
     <div class="form_add">
       <h2>Add a new ingredient</h2>
 
-      <%= simple_form_for([@cocktail, @dose]) do |f| %>
-        <%= f.association :ingredient %>
+      <%= simple_form_for [@cocktail, @dose] do |f| %>
+        <%= f.association :ingredient, class: 'select2' %>
         <%= f.input :description %>
         <%= f.submit "Add ingredient", class: "btn btn-primary" %>
       <% end %>
@@ -36,8 +37,12 @@
         No comment yet
       <% else %>
         <% @cocktail.reviews.each do |review| %>
-          <%= review.rating %>
-          <%= review.content %>
+          <div class="review-item">
+            <% 5.times do |i| %>
+              <i class="fas fa-star <%= 'yellow' if review.rating > i  %>"></i>
+            <% end %>
+            <%= review.content %>
+          </div>
         <% end %>
       <% end %>
     </div>
@@ -50,6 +55,3 @@
       <% end %>
     </div>
   </div>
-
-
-</div>

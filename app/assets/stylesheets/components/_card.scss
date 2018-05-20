@@ -1,16 +1,20 @@
 .cards{
   display:flex;
   flex-wrap:wrap;
-  justify-content:start;
+  justify-content:center;
   align-items:center;
 }
 
 .card{
-  width: 31%;
+  width: 300px;
   margin:10px 1%;
   position:relative;
+  transition: box-shadow 0.3s ease;
   border: 3px solid black;
   border-radius: 4px;
+  &:hover{
+    box-shadow: 3px 3px rgb(50,50,50);
+  }
 }
 
 .up-card {
@@ -23,9 +27,11 @@
 }
 
 .low-card{
+  height:60px;
   padding:10px 10px;
   display:flex;
   justify-content:space-between;
+  align-items:center;
 }
 
 .low-card .card-name{
@@ -45,6 +51,11 @@
   left:0;
   right:0;
   z-index:10;
+}
+
+.card-rating{
+  font-size: 13px;
+  width:89px;
 }
 
 // .card-user {

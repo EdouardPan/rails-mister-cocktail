@@ -3,6 +3,8 @@ class CocktailsController < ApplicationController
 
   def index
     @cocktails = Cocktail.all
+    @cocktail = Cocktail.new
+    @search_value = ""
   end
 
   def show
@@ -19,13 +21,22 @@ class CocktailsController < ApplicationController
     if @cocktail.save
       redirect_to cocktails_path
     else
-      render :new
+      @cocktails = Cocktail.all
+      render :index
     end
   end
 
   def destroy
     @cocktail.destroy
     redirect_to cocktails_path
+  end
+
+  def search
+    @search_value = params[:query][:name]
+    @search = "%#{@search_value}%"
+    @cocktails = Cocktail.where("name ILIKE '#{@search}'")
+    @cocktail = Cocktail.new
+    render :index
   end
 
   private
@@ -37,6 +48,4 @@ class CocktailsController < ApplicationController
   def cocktail_params
     params.require(:cocktail).permit(:name, :url_img)
   end
-
-
 end

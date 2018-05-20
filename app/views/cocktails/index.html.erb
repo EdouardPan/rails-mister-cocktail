@@ -1,15 +1,20 @@
 
-<div class="banner" style="background-image: linear-gradient(-225deg, rgba(240,240,240,0.2) 0%, rgba(150,150,150,0.2) 50%), url('https://www.rhumeriedechamarel.com/wp-content/uploads/2015/10/ORIGINALS-banner.jpg');">
+<div class="banner" style="background-image: linear-gradient(-225deg, rgba(240,240,240,0.2) 0%, rgba(150,150,150,0.2) 50%), url(<%= asset_url('banner.jpg') %>);">
   <div class="banner-content">
     <h1>My Cocktails</h1>
-    <p>Find a cocktail!</p>
+    <%= simple_form_for :query, url:search_path, html: { id: "form-search" ,class: "form-inline" } do |f| %>
+      <%= f.input :name, label: false, placeholder: "Find a cocktail", input_html: { value: @search_value, onfocus: "this.value = this.value;" } %>
+      <%= f.submit "Find", class: "btn btn-primary" %>
+    <% end %>
   </div>
 </div>
 
 <div class="center-box text-center">
-  <%= link_to new_cocktail_path do %>
+
+  <div class="pointer" data-toggle="modal" data-target="#myModal">
     <i class="fas fa-plus"></i> Add a cocktail
-  <% end %>
+  </div>
+
   <div class="cards">
     <% @cocktails.each do |cocktail| %>
       <div class="card">
@@ -17,11 +22,36 @@
           <!-- Add rating once the function is coded inside the review controller -->
         </div>
         <div class="low-card">
-          <div>rating</div>
+          <div class="card-rating">
+            <% 5.times do |i| %>
+              <i class="fas fa-star <%= 'yellow' if cocktail.average_rating > i  %>"></i>
+            <% end %>
+          </div>
           <div class="card-name"><%= cocktail.name.capitalize %></div>
         </div>
         <%= link_to "", cocktail_path(cocktail) %>
       </div>
     <% end %>
+  </div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h2 class="modal-title" id="myModalLabel">Add a cocktail</h2>
+      </div>
+      <div class="modal-body">
+        <%= simple_form_for @cocktail do |f| %>
+          <%= f.input :name %>
+          <%= f.input :url_img %>
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+          <%= f.submit "Add a cocktail", class: "btn btn-primary" %>
+        <% end %>
+      </div>
+    </div>
   </div>
 </div>

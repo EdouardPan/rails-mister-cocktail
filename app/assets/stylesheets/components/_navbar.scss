@@ -6,17 +6,51 @@
   padding: 0px 30px;
   display: flex;
   align-items: center;
-  justify-content: space-between;
   width:100%;
-  background-color:none;
+}
+
+.home-navbar{
+  background-color:transparent;
+  transition: 0.5s background-color ease;
   position:absolute;
   z-index:1000;
+  justify-content: flex-end;
+}
+
+.main-navbar{
+  background-color:white;
+  position:fixed;
+  top:0;
+  z-index:1000;
+  justify-content: space-between;
 }
 
 /* Logo */
-.home i {
+.back-home-btn i {
   font-size: 30px;
   color:white;
+}
+
+.back-btn i {
+  font-size: 30px;
+  color:rgb(100,100,100);
+}
+
+/* Link behavior */
+.navbar-link-home {
+  color: white;
+  &:hover{
+    text-decoration: none;
+    color: rgb(220,220,220);
+  }
+}
+
+.navbar-link {
+  color: rgb(100,100,100);
+  &:hover{
+    text-decoration: none;
+    color: rgb(150,150,150);
+  }
 }
 
 /* User Avatar */
@@ -37,16 +71,6 @@
 .navbar-wagon-item {
   cursor: pointer;
   padding: 0 20px;
-}
-
-/* Navbar link */
-.navbar-wagon-link {
-  color: #616668;
-  font-size: 14px;
-}
-.navbar-wagon-link:hover {
-  color: #da552f;
-  text-decoration: none;
 }
 
 /* Dropdown menu */

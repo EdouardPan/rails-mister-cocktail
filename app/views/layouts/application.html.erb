@@ -9,11 +9,20 @@
     <!-- <link href="https://fonts.googleapis.com/css?family=Laila:400,600|Roboto" rel="stylesheet"> -->
     <link href="https://fonts.googleapis.com/css?family=Bungee+Inline|Bungee+Shade|Fredericka+the+Great|Homemade+Apple|Londrina+Outline|Monoton" rel="stylesheet">
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_pack_tag 'application' %>
   </head>
 
   <body>
-    <%= render 'layouts/navbar' %>
+
+    <% if current_page?(cocktails_path) || current_page?(root_path) || request.original_fullpath == "/cocktails/search" %>
+      <%= render 'layouts/navbar_home' %>
+    <% else %>
+      <%= render 'layouts/navbar' %>
+    <% end %>
+
     <%= yield %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+    <%= javascript_include_tag 'application'%>
+    <%= javascript_pack_tag "application" %>
   </body>
 </html>
